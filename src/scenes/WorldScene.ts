@@ -288,7 +288,7 @@ export default class WorldScene extends Scene {
           const tile = layer.data[tilePosition.y]?.[tilePosition.x];
           return !!tile?.properties?.collides;
         });
-
+        
         if (!collides) {
           this.gridEngine.setPosition(
             Sprites.PLAYER,
@@ -311,7 +311,6 @@ export default class WorldScene extends Scene {
         string,
         { isDown: boolean }
       >;
-
       if (cursors.left.isDown || keys.A.isDown) {
         this.gridEngine.move(Sprites.PLAYER, Direction.LEFT);
       } else if (cursors.right.isDown || keys.D.isDown) {

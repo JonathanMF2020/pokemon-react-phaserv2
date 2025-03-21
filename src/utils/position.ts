@@ -23,6 +23,5 @@ export const getLookingAtPosition = (scene: WorldScene) => {
   } else if (facingDirection === Direction.RIGHT) {
     lookingPosition.x += 1;
   }
-
   return lookingPosition;
 };

@@ -9,7 +9,7 @@ export type OpenDialogParams = {
 };
 
 export const isUIOpen = () => {
-  return isDialogOpen() || isMenuOpen() || isBattleOpen();
+  return isDialogOpen() || isMenuOpen() || isBattleOpen() || isFreezedPlayer();
 };
 
 export const isDialogOpen = () => {
@@ -23,6 +23,10 @@ export const isMenuOpen = () => {
 export const isBattleOpen = () => {
   return useUIStore.getState().battle.isOpen;
 };
+
+export const isFreezedPlayer = () => {
+  return useUIStore.getState().frezzed.isFreezed;
+}
 
 export const openDialog = ({
   content,

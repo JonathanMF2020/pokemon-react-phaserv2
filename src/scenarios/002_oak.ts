@@ -23,7 +23,7 @@ export default () => {
               openDialog({
                 content: `OAK: Be patient! BLUE, you can have one too!`,
                 callback: () => {
-                  completeScenario(1);
+                  completeScenario(2);
                 },
               });
             },

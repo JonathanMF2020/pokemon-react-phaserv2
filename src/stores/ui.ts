@@ -14,6 +14,9 @@ interface UIStore {
   menu: {
     isOpen: boolean;
   };
+  frezzed: {
+    isFreezed: boolean
+  };
   battle: {
     isOpen: boolean;
   };
@@ -27,6 +30,8 @@ interface UIStore {
   closeDialog: () => void;
   toggleMenu: () => void;
   toggleBattle: () => void;
+  freezedPlayer: () => void;
+  unFreezedPlayer: () => void;
   set: (fn: (state: UIStore) => UIStore) => void;
 }
 
@@ -43,6 +48,9 @@ export const useUIStore = create<UIStore>()(
     },
     menu: {
       isOpen: false,
+    },
+    frezzed: {
+      isFreezed: false
     },
     battle: {
       isOpen: false,
@@ -70,6 +78,18 @@ export const useUIStore = create<UIStore>()(
           image: undefined,
         },
       })),
+    freezedPlayer : () =>
+      set(() => ({
+        frezzed: {
+          isFreezed: true,
+        },
+    })),
+    unFreezedPlayer : () =>
+        set(() => ({
+          frezzed: {
+            isFreezed: false,
+          },
+    })),
     toggleMenu: () =>
       set((state) => ({
         menu: {

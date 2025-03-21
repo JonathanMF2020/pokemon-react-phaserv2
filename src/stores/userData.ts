@@ -38,6 +38,7 @@ export interface IUserDataStore {
   update: (state: Partial<IUserDataStore>) => void;
   addObjectToInventory: (objectId: number, currentMap: Maps) => void;
   addPokemon: (id: number) => void;
+  countPokemons: () => integer
   hasCompletedScenario: (scenarioId: number) => boolean;
   completeScenario: (scenarioId: number) => void;
 }
@@ -70,6 +71,10 @@ export const useUserDataStore = create<IUserDataStore>()(
           }));
         },
 
+        countPokemons:() => {
+          return get().pokemons.length;
+        },
+
         addObjectToInventory: (objectId: number, currentMap: Maps) => {
           set((state) => ({
             ...state,
@@ -92,6 +97,7 @@ export const useUserDataStore = create<IUserDataStore>()(
             ...state,
             scenariosCompleted: [...state.scenariosCompleted, scenarioId],
           }));
+          console.debug("[Scenario]  Scenario complete: "+scenarioId);
         },
       }),
       {
