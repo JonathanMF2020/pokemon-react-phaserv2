@@ -27,16 +27,24 @@ export interface ISettings {
   };
 }
 
+export interface IBagObject {
+  objectId: number;
+  ammout: number
+}
+
 export interface IUserDataStore {
   onBicycle: boolean;
+  onRunning: boolean;
   position?: IPosition;
   inventory: IInventoryObject[];
+  bags: IBagObject[];
   pokemons: IPokemon[];
   settings: ISettings;
   scenariosCompleted: number[];
 
   update: (state: Partial<IUserDataStore>) => void;
   addObjectToInventory: (objectId: number, currentMap: Maps) => void;
+  setObjectToBag: (objectId: number, ammout: number) => void
   addPokemon: (id: number) => void;
   countPokemons: () => integer
   hasCompletedScenario: (scenarioId: number) => boolean;
@@ -53,9 +61,10 @@ export const useUserDataStore = create<IUserDataStore>()(
             ...updates,
           }));
         },
-
         onBicycle: Boolean(false),
+        onRunning: Boolean(false),
         inventory: [],
+        bags: [],
         pokemons: [],
         settings: {
           general: {
@@ -83,6 +92,19 @@ export const useUserDataStore = create<IUserDataStore>()(
               {
                 objectId,
                 collectedMap: currentMap,
+              },
+            ],
+          }));
+        },
+
+        setObjectToBag: (objectId: number, ammout: number) => {
+          set((state) => ({
+            ...state,
+            bags: [
+              ...state.bags,
+              {
+                objectId,
+                ammout: ammout,
               },
             ],
           }));

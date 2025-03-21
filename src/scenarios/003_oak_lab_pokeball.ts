@@ -24,18 +24,15 @@ export default ([pokeball], scene: WorldScene) => {
   const { hasCompletedScenario, completeScenario, countPokemons } =
     useUserDataStore.getState();
 
-
-  if (hasCompletedScenario(4) || !hasCompletedScenario(2)) {
+  if (hasCompletedScenario(3) || !hasCompletedScenario(2)) {
     return openDialog({
-      content: "It's a professor Oak's pokeball!",
-    });
+        content: `OAK: ¡Ese es mio!`});
   }
 
   const pokemon_inside_id = getTiledObjectProperty("pokemon_inside", pokeball);
   const pokemon = pokemons.find(({ id }) => id === Number(pokemon_inside_id));
   const type = pokemon.type[0].toLowerCase();
   console.log(countPokemons());
-  if(countPokemons() <= 0){
     openDialog({
       content: `OAK: So! You want the ${type} Pokemon, ${pokemon.name}?`,
       image: `assets/images/pokemons/front/${pokemon.id}.png`,
@@ -88,10 +85,6 @@ export default ([pokeball], scene: WorldScene) => {
         }
       },
     });
-  }else{
-    openDialog({
-      content: `OAK: ¡Ese es mio!`})
 
-  }
   
 };

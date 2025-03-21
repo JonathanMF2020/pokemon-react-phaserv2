@@ -224,6 +224,7 @@ export const handleDoor = (
       facingDirection: scene.gridEngine.getFacingDirection(Sprites.PLAYER),
     },
     onBicycle: false,
+    onRunning: false, 
   });
   scene.map = nextMap;
   scene.sound.play(Audios.DOOR, getAudioConfig(0.5, false));

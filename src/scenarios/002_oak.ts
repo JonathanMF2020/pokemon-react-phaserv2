@@ -2,7 +2,11 @@ import { useUserDataStore } from "../stores/userData";
 import { openDialog } from "../utils/ui";
 
 export default () => {
-  const { completeScenario } = useUserDataStore.getState();
+  const { completeScenario, hasCompletedScenario } = useUserDataStore.getState();
+
+  if (hasCompletedScenario(1) == false) {
+    return 0;
+  }
 
   openDialog({
     content: `BLUE: Gramps! I'm fed up with waiting!`,
