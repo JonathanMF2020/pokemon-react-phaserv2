@@ -98,16 +98,26 @@ export const useUserDataStore = create<IUserDataStore>()(
         },
 
         setObjectToBag: (objectId: number, ammout: number) => {
-          set((state) => ({
-            ...state,
-            bags: [
-              ...state.bags,
-              {
-                objectId,
-                ammout: ammout,
-              },
-            ],
-          }));
+          set((state) => {
+            const existingItemIndex = state.bags.findIndex(e => e.objectId === objectId);
+        
+            if (existingItemIndex !== -1) {
+              // Si el objeto ya existe, actualizamos su cantidad
+              const updatedBags = [...state.bags];
+              updatedBags[existingItemIndex] = {
+                ...updatedBags[existingItemIndex],
+                ammout: updatedBags[existingItemIndex].ammout + ammout,
+              };
+        
+              return { ...state, bags: updatedBags };
+            }
+        
+            // Si no existe, lo agregamos
+            return {
+              ...state,
+              bags: [...state.bags, { objectId, ammout }],
+            };
+          });
         },
 
         hasCompletedScenario: (scenarioId: number) => {

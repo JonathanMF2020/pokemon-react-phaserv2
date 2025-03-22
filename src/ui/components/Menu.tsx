@@ -6,6 +6,7 @@ import { useUIStore } from "../../stores/ui";
 import { SettingsMenu } from "./menus/SettingsMenu";
 import { useEventsListeners } from "../../utils/events";
 import { TeamMenu } from "./menus/TeamMenu";
+import { ConsoleMenu } from "./menus/ConsoleMenu";
 
 export enum Options {
   POKEDEX = "Pokedex",
@@ -13,6 +14,7 @@ export enum Options {
   BAG = "Bag",
   YOU = "You",
   SETTINGS = "Settings",
+  CONSOLE = "Consola"
 }
 
 
@@ -106,6 +108,10 @@ export const Menu = () => {
 
   if (selected === Options.TEAM) {
     return <TeamMenu setSelectedOption={setSelected} />;
+  }
+
+  if (selected === Options.CONSOLE) {
+    return <ConsoleMenu setSelectedOption={setSelected} />;
   }
 
   return (
