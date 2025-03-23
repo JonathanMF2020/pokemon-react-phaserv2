@@ -299,8 +299,11 @@ export const handleDoor = (
   const userData = useUserDataStore.getState();
 
   const nextMap = getTiledObjectProperty("nextMap", door);
-  const x = getTiledObjectProperty("x", door);
-  const y = getTiledObjectProperty("y", door);
+  const x = Number(getTiledObjectProperty("x", door));
+  const y = Number(getTiledObjectProperty("y", door));
+
+  console.log(x);
+  console.log(y);
   userData.update({
     position: {
       x,

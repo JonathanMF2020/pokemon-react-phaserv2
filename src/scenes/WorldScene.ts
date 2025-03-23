@@ -153,7 +153,8 @@ export default class WorldScene extends Scene {
 
   initializeGrid(): void {
     const { startPosition, facingDirection } = getStartPosition(this) ?? {};
-
+    console.log(startPosition);
+    console.log(facingDirection);
     const gridEngineConfig = {
       collisionTilePropertyName: "collides",
       characters: [
@@ -168,7 +169,6 @@ export default class WorldScene extends Scene {
         },
       ],
     } as GridEngineConfig;
-
     this.gridEngine.create(this.tilemap, gridEngineConfig);
   }
 
