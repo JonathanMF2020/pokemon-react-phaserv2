@@ -330,6 +330,28 @@
                  "width":283.282614118234,
                  "x":482.51434272886,
                  "y":4.66949363931155
+                }, 
+                {
+                 "height":143.197804938887,
+                 "id":141,
+                 "name":"blocked",
+                 "properties":[
+                        {
+                         "name":"scenario_ids",
+                         "type":"string",
+                         "value":"2"
+                        }, 
+                        {
+                         "name":"texto",
+                         "type":"string",
+                         "value":"Cientifico: Parece que el Profesor Flopjack te esta buscando; Deberias ir al laboratorio"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":284.839111998004,
+                 "x":482.51434272886,
+                 "y":242.813669244201
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -338,7 +360,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":141,
+ "nextobjectid":142,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

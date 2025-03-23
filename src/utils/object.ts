@@ -2,10 +2,10 @@ import { Types } from "phaser";
 import type WorldScene from "../scenes/WorldScene";
 import { Audios, Layers, Objects, Sprites } from "../constants/assets";
 import { TILE_SIZE } from "../constants/game";
-import { getCurrentPlayerTile } from "./map";
+import { getCurrentPlayerTile, getStartPosition } from "./map";
 import { getAudioConfig, playClick } from "./audio";
 import { Direction } from "grid-engine";
-import { isDialogOpen, isUIOpen, openDialog, triggerUINextStep } from "./ui";
+import { isDialogOpen, isUIOpen, openDialog, triggerUIDown, triggerUINextStep } from "./ui";
 import { useUserDataStore } from "../stores/userData";
 import { getRandomNumber } from "./number";
 
@@ -249,6 +249,9 @@ export const handleOverlappableObject = (
   object: Types.Tilemaps.TiledObject,
 ) => {
   switch (object.name) {
+    case Objects.BLOCKED:
+      handleBlocked(scene, object);
+      break;
     case Objects.DOOR:
       handleDoor(scene, object);
       break;
@@ -257,6 +260,41 @@ export const handleOverlappableObject = (
       break;
   }
 };
+
+export const handleBlocked = (
+  scene: WorldScene,
+  door: Types.Tilemaps.TiledObject,
+) => {
+  const scenarios = getTiledObjectProperty("sceneario_ids", door);
+  const texto = getTiledObjectProperty("texto", door);
+  const userData = useUserDataStore.getState();
+  if(!userData.hasCompletedScenario(scenarios)){
+    openDialog({
+      content: texto,
+      callback: () => {
+          //completeScenario(1)
+          const lastfacing = scene.gridEngine.getFacingDirection(Sprites.PLAYER);
+          switch(lastfacing){
+            case "up":
+              scene.gridEngine.move(Sprites.PLAYER, Direction.DOWN);
+              break;
+            case "down":
+              scene.gridEngine.move(Sprites.PLAYER, Direction.UP);
+              break;
+            case "right":
+              scene.gridEngine.move(Sprites.PLAYER, Direction.LEFT);
+              break;
+            case "left":
+              scene.gridEngine.move(Sprites.PLAYER, Direction.RIGHT);
+              break;
+          }
+          
+          
+      },
+    });
+  }
+
+}
 
 export const handleDoor = (
   scene: WorldScene,
