@@ -1,5 +1,5 @@
-import { useUserDataStore } from "../stores/userData";
-import { openDialog } from "../utils/ui";
+import { useUserDataStore } from "../../stores/userData";
+import { openDialog } from "../../utils/ui";
 
 export default () => {
   const { completeScenario, hasCompletedScenario } = useUserDataStore.getState();

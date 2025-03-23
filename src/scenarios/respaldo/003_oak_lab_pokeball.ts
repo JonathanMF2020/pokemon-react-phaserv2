@@ -1,18 +1,18 @@
-import WorldScene from "../scenes/WorldScene";
-import { useUserDataStore } from "../stores/userData";
+import WorldScene from "../../scenes/WorldScene";
+import { useUserDataStore } from "../../stores/userData";
 import {
   convertObjectPositionToTilePosition,
   getTiledObjectProperty,
   handlePokeball,
   removeObject,
-} from "../utils/object";
-import { openDialog } from "../utils/ui";
-import { pokemons } from "../constants/pokemons";
+} from "../../utils/object";
+import { openDialog } from "../../utils/ui";
+import { pokemons } from "../../constants/pokemons";
 
-import { Layers, Objects, Sprites } from "../constants/assets";
+import { Layers, Objects, Sprites } from "../../constants/assets";
 import { Direction } from "grid-engine";
-import { wait } from "../utils/time";
-import { useUIStore } from "../stores/ui";
+import { wait } from "../../utils/time";
+import { useUIStore } from "../../stores/ui";
 
 const weaknessMap = {
   1: 4,

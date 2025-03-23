@@ -29,6 +29,7 @@ export default class BattleScene extends Scene {
   }
 
   create(): void {
+    console.debug("[Scene] Run BattleScene");
     this.cameras.main.fadeIn(200);
 
     // Add base images

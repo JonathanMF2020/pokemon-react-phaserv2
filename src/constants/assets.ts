@@ -47,6 +47,7 @@ export enum Layers {
 export enum Objects {
   SPAWN = "spawn",
   DOOR = "door",
+  MOVEMENT = "door",
   NPC = "npc",
   DIALOG = "dialog",
   POKEBALL = "pokeball",

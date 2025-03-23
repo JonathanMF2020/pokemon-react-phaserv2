@@ -5,6 +5,7 @@ import { Sprites, Layers, Tilesets, Maps } from "../constants/assets";
 import {
   convertObjectPositionToTilePosition,
   getObjectUnderPlayer,
+  getObjectUnderRectanglePlayer,
   handleBicycle,
   handleClickOnNpcIfAny,
   handleClickOnObjectIfAny,
@@ -65,10 +66,12 @@ export default class WorldScene extends Scene {
     daylightOverlay.setScrollFactor(0);
 
     this.daylightOverlay = daylightOverlay;
-    console.log(Object.keys(moves));
+
+    console.debug("[Scene] Run WorldScene "+this.map);
   }
 
   create(): void {
+    
     this.applyUserDataBeforeRender();
     this.initializeTilemap();
     this.initializePlayer();
@@ -99,10 +102,11 @@ export default class WorldScene extends Scene {
 
   initializeTilemap(): void {
     this.tilemap = this.make.tilemap({ key: this.map });
-
+    
     const all_tilesets = Object.values(Tilesets).reduce(
       (acc: Tilemaps.Tileset[], value: Tilesets) => {
         if (this.tilemap.tilesets.find(({ name }) => name === value)) {
+          
           const tileset = this.tilemap.addTilesetImage(value);
 
           if (tileset) {
@@ -122,11 +126,14 @@ export default class WorldScene extends Scene {
       });
   }
 
+
   handleObjectsOverlap(): void {
     const objectUnderPlayer = getObjectUnderPlayer(this);
-
+    const react = getObjectUnderRectanglePlayer(this);
     if (objectUnderPlayer) {
       handleOverlappableObject(this, objectUnderPlayer);
+    } else if (react) {
+      handleOverlappableObject(this, react);
     }
   }
 

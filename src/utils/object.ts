@@ -18,6 +18,7 @@ import { getCharacterDirectionDependingOnAnotherCharacter } from "./direction";
 import { getLookingAtPosition } from "./position";
 import oakNoPokemonScenario from "../scenarios/codeDriven/oakGrassNoPokemon";
 import { getFirstPossibleScenario } from "./scenario";
+import { useUIStore } from "../stores/ui";
 
 export const convertObjectPositionToTilePosition = (
   object: Types.Tilemaps.TiledObject,
@@ -37,9 +38,23 @@ export const findObjectByPosition = (
     .getObjectLayer(Layers.OBJECTS)
     ?.objects.map((object) => convertObjectPositionToTilePosition(object));
 
-  return objects?.find(
-    (object) => object.x === position.x && object.y === position.y,
-  );
+    return objects?.find((object) => {
+      if(!object.rectangle){
+        return object.x === position.x && object.y === position.y;
+      }
+        
+
+      /*if (!object.rectangle) {
+        return object.x === position.x && object.y === position.y;
+      }else{
+        console.log("Es rectangulo");
+        const rect = new Phaser.Geom.Rectangle(object.x, object.y, object.width, object.height);
+        return Phaser.Geom.Rectangle.Contains(rect, position.x, position.y);
+      }*/
+    
+
+      
+    });
 };
 
 export const findObjectByName = (scene: WorldScene, name: string) => {
@@ -53,6 +68,42 @@ export const findObjectByName = (scene: WorldScene, name: string) => {
     (object) => getTiledObjectProperty("name", object) === name,
   );
 };
+
+export const getObjectUnderRectanglePlayer = (scene: WorldScene) => {
+  const { tilemap } = scene;
+  const currentTile = getCurrentPlayerTile(scene);
+
+  if (!currentTile) {
+    return null; // Si no encontramos el tile, devolvemos null
+  }
+
+  // Suponiendo que el jugador es un sprite de tamaño 32x32, ajusta esto si es diferente
+  const playerPosition = {
+    x: currentTile.x * tilemap.tileWidth, // Coordenadas en píxeles
+    y: currentTile.y * tilemap.tileHeight,
+    width: 32,  // Ajusta el tamaño del jugador si es necesario
+    height: 32,
+  };
+
+  // Obtener la capa de objetos donde están los rectángulos
+  const objects = tilemap.getObjectLayer(Layers.OBJECTS)?.objects;
+
+  // Verificar si el jugador está encima de algún rectángulo
+  const objectUnderPlayer = objects?.find((object) => {
+    // Verificamos si el jugador está dentro del área del rectángulo
+    return (
+      playerPosition.x + playerPosition.width > object.x &&  // Límite derecho del jugador
+      playerPosition.x < object.x + object.width &&          // Límite izquierdo del jugador
+      playerPosition.y + playerPosition.height > object.y && // Límite inferior del jugador
+      playerPosition.y < object.y + object.height            // Límite superior del jugador
+    );
+  });
+
+  return objectUnderPlayer || undefined; // Devuelve el objeto encontrado o null si no hay ninguno
+};
+
+
+
 
 export const getObjectUnderPlayer = (scene: WorldScene) => {
   const currentTile = getCurrentPlayerTile(scene);
@@ -192,6 +243,7 @@ export const handleClickOnNpcIfAny = (scene: WorldScene) => {
   }
 };
 
+
 export const handleOverlappableObject = (
   scene: WorldScene,
   object: Types.Tilemaps.TiledObject,
@@ -215,7 +267,6 @@ export const handleDoor = (
   const nextMap = getTiledObjectProperty("nextMap", door);
   const x = getTiledObjectProperty("x", door);
   const y = getTiledObjectProperty("y", door);
-
   userData.update({
     position: {
       x,

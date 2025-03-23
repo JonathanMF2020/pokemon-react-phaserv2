@@ -178,12 +178,12 @@
                         {
                          "name":"x",
                          "type":"int",
-                         "value":16
+                         "value":13
                         }, 
                         {
                          "name":"y",
                          "type":"int",
-                         "value":19
+                         "value":22
                         }],
                  "rotation":0,
                  "type":"",
@@ -333,12 +333,12 @@
                         {
                          "name":"x",
                          "type":"int",
-                         "value":16
+                         "value":13
                         }, 
                         {
                          "name":"y",
                          "type":"int",
-                         "value":19
+                         "value":22
                         }],
                  "rotation":0,
                  "type":"",

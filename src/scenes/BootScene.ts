@@ -32,6 +32,7 @@ export default class BootScene extends Scene {
   }
 
   preload(): void {
+    console.debug("[Scene] Run BootScene");
     this.load.on("progress", (value: number) => {
       dispatch<number>(UIEvents.LOADING_PROGRESS, value);
     });

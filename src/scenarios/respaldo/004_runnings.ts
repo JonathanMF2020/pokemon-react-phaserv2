@@ -1,6 +1,6 @@
-import { useUserDataStore } from "../stores/userData";
-import { openDialog } from "../utils/ui";
-import { BagItems } from "../ui/components/Bag";
+import { useUserDataStore } from "../../stores/userData";
+import { openDialog } from "../../utils/ui";
+import { BagItems } from "../../ui/components/Bag";
 
 export default () => {
   const { completeScenario, setObjectToBag, hasCompletedScenario } = useUserDataStore.getState();

@@ -33,6 +33,7 @@ interface UIStore {
   freezedPlayer: () => void;
   unFreezedPlayer: () => void;
   set: (fn: (state: UIStore) => UIStore) => void;
+  update: (state: Partial<UIStore>) => void;
 }
 
 export const useUIStore = create<UIStore>()(
@@ -54,6 +55,12 @@ export const useUIStore = create<UIStore>()(
     },
     battle: {
       isOpen: false,
+    },
+    update: (updates: Partial<UIStore>) => {
+      set((state) => ({
+        ...state,
+        ...updates,
+      }));
     },
     setLoading: (loading) => set(() => ({ loading })),
     toggleDialog: (content, image, choices, callback) =>
