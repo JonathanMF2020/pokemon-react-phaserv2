@@ -126,8 +126,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":600.107258667997,
-                 "y":663.603890496383
+                 "x":598.490895485158,
+                 "y":626.427537291095
                 }, 
                 {
                  "height":0,
@@ -533,10 +533,9 @@
                  "y":339.436268396109
                 }, 
                 {
-                 "height":0,
-                 "id":75,
+                 "height":87.1639,
+                 "id":86,
                  "name":"door",
-                 "point":true,
                  "properties":[
                         {
                          "name":"nextMap",
@@ -545,217 +544,20 @@
                         }, 
                         {
                          "name":"x",
-                         "type":"int",
-                         "value":13
-                        }, 
-                        {
-                         "name":"y",
-                         "type":"int",
-                         "value":2
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":648.161636318284,
-                 "y":720.897979546022
-                }, 
-                {
-                 "height":0,
-                 "id":79,
-                 "name":"door",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"nextMap",
                          "type":"string",
-                         "value":"pallet_town"
-                        }, 
-                        {
-                         "name":"x",
-                         "type":"int",
-                         "value":13
+                         "value":"13"
                         }, 
                         {
                          "name":"y",
-                         "type":"int",
-                         "value":2
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":745.143427288601,
-                 "y":720.897979546021
-                }, 
-                {
-                 "height":0,
-                 "id":80,
-                 "name":"door",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"nextMap",
                          "type":"string",
-                         "value":"pallet_town"
-                        }, 
-                        {
-                         "name":"x",
-                         "type":"int",
-                         "value":13
-                        }, 
-                        {
-                         "name":"y",
-                         "type":"int",
-                         "value":2
+                         "value":"2"
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":0,
-                 "x":698.268894986281,
-                 "y":719.281616363183
-                }, 
-                {
-                 "height":0,
-                 "id":81,
-                 "name":"door",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"nextMap",
-                         "type":"string",
-                         "value":"pallet_town"
-                        }, 
-                        {
-                         "name":"x",
-                         "type":"int",
-                         "value":13
-                        }, 
-                        {
-                         "name":"y",
-                         "type":"int",
-                         "value":2
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":602.903467198803,
-                 "y":717.665253180344
-                }, 
-                {
-                 "height":0,
-                 "id":82,
-                 "name":"door",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"nextMap",
-                         "type":"string",
-                         "value":"pallet_town"
-                        }, 
-                        {
-                         "name":"x",
-                         "type":"int",
-                         "value":13
-                        }, 
-                        {
-                         "name":"y",
-                         "type":"int",
-                         "value":2
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":551.179845347967,
-                 "y":719.281616363183
-                },
-            
-                {
-                 "height":0,
-                 "id":83,
-                 "name":"door",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"nextMap",
-                         "type":"string",
-                         "value":"pallet_town"
-                        }, 
-                        {
-                         "name":"x",
-                         "type":"int",
-                         "value":13
-                        }, 
-                        {
-                         "name":"y",
-                         "type":"int",
-                         "value":2
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":455.814417560489,
-                 "y":716.048889997506
-                }, 
-                {
-                 "height":0,
-                 "id":84,
-                 "name":"door",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"nextMap",
-                         "type":"string",
-                         "value":"pallet_town"
-                        }, 
-                        {
-                         "name":"x",
-                         "type":"int",
-                         "value":13
-                        }, 
-                        {
-                         "name":"y",
-                         "type":"int",
-                         "value":2
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":505.921676228486,
-                 "y":717.665253180344
-                }, 
-                {
-                 "height":0,
-                 "id":85,
-                 "name":"door",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"nextMap",
-                         "type":"string",
-                         "value":"pallet_town"
-                        }, 
-                        {
-                         "name":"x",
-                         "type":"int",
-                         "value":13
-                        }, 
-                        {
-                         "name":"y",
-                         "type":"int",
-                         "value":2
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":796.867049139436,
-                 "y":722.51434272886
+                 "width":388.34660688451,
+                 "x":433.783793090546,
+                 "y":628.825134060863
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -764,7 +566,7 @@
          "y":0
         }],
  "nextlayerid":9,
- "nextobjectid":86,
+ "nextobjectid":87,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

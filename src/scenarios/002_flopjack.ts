@@ -4,6 +4,7 @@ import { openDialog } from "../utils/ui";
 export default () => {
   const { completeScenario, hasCompletedScenario } = useUserDataStore.getState();
 
+  console.log(hasCompletedScenario(1));
   if (hasCompletedScenario(1) == false) {
     return 0;
   }

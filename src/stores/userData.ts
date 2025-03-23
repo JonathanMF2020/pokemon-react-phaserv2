@@ -121,6 +121,8 @@ export const useUserDataStore = create<IUserDataStore>()(
         },
 
         hasCompletedScenario: (scenarioId: number) => {
+          console.log(scenarioId);
+          console.log(get().scenariosCompleted);
           return get().scenariosCompleted.includes(scenarioId);
         },
 

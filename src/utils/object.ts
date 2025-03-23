@@ -2,10 +2,10 @@ import { Types } from "phaser";
 import type WorldScene from "../scenes/WorldScene";
 import { Audios, Layers, Objects, Sprites } from "../constants/assets";
 import { TILE_SIZE } from "../constants/game";
-import { getCurrentPlayerTile, getStartPosition } from "./map";
+import { getCurrentPlayerTile } from "./map";
 import { getAudioConfig, playClick } from "./audio";
 import { Direction } from "grid-engine";
-import { isDialogOpen, isUIOpen, openDialog, triggerUIDown, triggerUINextStep } from "./ui";
+import { isDialogOpen, isUIOpen, openDialog, triggerUINextStep } from "./ui";
 import { useUserDataStore } from "../stores/userData";
 import { getRandomNumber } from "./number";
 
@@ -18,7 +18,6 @@ import { getCharacterDirectionDependingOnAnotherCharacter } from "./direction";
 import { getLookingAtPosition } from "./position";
 import oakNoPokemonScenario from "../scenarios/codeDriven/oakGrassNoPokemon";
 import { getFirstPossibleScenario } from "./scenario";
-import { useUIStore } from "../stores/ui";
 
 export const convertObjectPositionToTilePosition = (
   object: Types.Tilemaps.TiledObject,
@@ -265,14 +264,13 @@ export const handleBlocked = (
   scene: WorldScene,
   door: Types.Tilemaps.TiledObject,
 ) => {
-  const scenarios = getTiledObjectProperty("sceneario_ids", door);
+  const {hasCompletedScenario } = useUserDataStore.getState();
+  const scenarios = Number(getTiledObjectProperty("scenario_ids", door));
   const texto = getTiledObjectProperty("texto", door);
-  const userData = useUserDataStore.getState();
-  if(!userData.hasCompletedScenario(scenarios)){
+  if(!hasCompletedScenario(scenarios)){
     openDialog({
       content: texto,
       callback: () => {
-          //completeScenario(1)
           const lastfacing = scene.gridEngine.getFacingDirection(Sprites.PLAYER);
           switch(lastfacing){
             case "up":
@@ -288,8 +286,6 @@ export const handleBlocked = (
               scene.gridEngine.move(Sprites.PLAYER, Direction.RIGHT);
               break;
           }
-          
-          
       },
     });
   }
@@ -451,7 +447,7 @@ export const handlePokeball = (
 
     scene.sound.play(Audios.GAIN, getAudioConfig(0.1, false));
     openDialog({
-      content: `You got a <span class="gain">${pokemon.name}</span>!`,
+      content: `Acabas de recibir un <span class="gain">${pokemon.name}</span>!`,
       callback,
     });
   }
