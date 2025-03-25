@@ -178,6 +178,8 @@ export default class BattleScene extends Scene {
       delay: pokemonGoInDelay2,
     });
 
+    
+
     // Pokemon from pokeball appears
     const userData = useUserDataStore.getState();
     const firstPokemonInTeam = userData.pokemons?.[0]?.id;
@@ -188,22 +190,26 @@ export default class BattleScene extends Scene {
       `pokemon_${firstPokemonInTeam}_back`,
     );
 
-    this.pokemonFromTeam.displayHeight = Number(this.game.config.height) / 5;
+    this.pokemonFromTeam.displayHeight = Number(this.game.config.height) / 6;
     this.pokemonFromTeam.scaleX = this.pokemonFromTeam.scaleY;
-    this.pokemonFromTeam.y = Number(this.game.config.height);
-    this.pokemonFromTeam.x = Number(this.game.config.width) / 2.9;
+    this.pokemonFromTeam.y = Number(this.game.config.height) / 1.9;
+    this.pokemonFromTeam.x = -200; // 50 píxeles fuera de la pantalla
 
     const pokemonFromTeamAppearsDelay = pokemonGoInDelay2 + 250;
 
     this.tweens.add({
       targets: this.pokemonFromTeam,
-      y: Number(this.game.config.height) / 1.8,
+      x: Number(this.game.config.width) / 3,
       duration: 250,
       delay: pokemonFromTeamAppearsDelay,
+       ease: 'Power2',
     });
+
+    
 
     this.time.delayedCall(pokemonFromTeamAppearsDelay, () => {
       this.listenKeyboardControl();
+      pokeball.setVisible(false);
     });
   }
 

@@ -185,15 +185,7 @@ div.hovered label {
   bottom: 16px;
   left: 50%;
   transform: translate(-50%, 16px);
-  z-index: 99999;
-  background: #ffffff;
-  border: 2px solid #98c8f8;
-  box-shadow:
-    0 2px 0 2px #698096,
-    inset 0 2px 0 2px #698096,
-    0 0 0 2px #698096,
-    inset 0 0 0 2px #698096;
-  border-radius: 16px;
+  
 }
 
 @keyframes blinker {
@@ -210,6 +202,118 @@ div.hovered label {
   flex-direction: column;
   width: 100%;
   height: 100%;
+}
+
+.item{
+  border-style: groove;
+  border-color: #000;
+  padding: 5px;
+}
+
+.normal{
+  background-color: #a9b484;
+}
+
+.normal{
+  background-color: #a9b484;
+}
+
+.water{
+  background-color: #0195f6;
+}
+
+.action-bar{
+  display: flex;
+  justify-content: end; /* Distribuye los elementos con espacio entre ellos */
+  align-items: center; /* Alinea verticalmente en el centro */
+  width: 100%; /* Opcional, para ocupar todo el ancho */
+}
+
+.action-bar-center{
+  display: flex;
+  justify-content: center; /* Distribuye los elementos con espacio entre ellos */
+  width: 100%; /* Opcional, para ocupar todo el ancho */
+}
+
+.action-bar-item {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.action-bar-item-center {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.action-bar-item:hover {
+  border: 2px solid red;
+}
+
+.pp-container{
+  margin-top: 16px;
+}
+
+.main-battle-info {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.main-battle {
+  display: grid;
+    gap: 10px;
+}
+  
+.figth { grid-area: 1 / 1 / 2 / 2; }
+.bag { grid-area: 1 / 2 / 2 / 3; }
+.pokemon { grid-area: 1 / 3 / 2 / 4; }
+.run { grid-area: 1 / 4 / 2 / 5; }
+
+
+.button {
+    font-size: 16px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.55);
+    padding: 10px 20px;
+    border-radius: 10px;
+
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.button-read {
+  font-size: 16px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.55);
+  padding: 10px 20px;
+  border-radius: 10px;
+
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.button:hover {
+    border: 2px solid red;
+    box-shadow: 0px 0px 5px red;
+    padding: 8px 18px; /* Ajuste para compensar el borde */
+}
+
+
+  
+
+.item {
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+  text-align: center; /* Asegura que el texto esté centrado */
 }
 
 .loading img {

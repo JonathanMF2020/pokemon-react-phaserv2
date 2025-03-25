@@ -124,6 +124,24 @@ export const getObjectLookedAt = (scene: WorldScene) => {
   return findObjectByPosition(scene, lookingPosition);
 };
 
+export const getFileRoute = async (name: string): Promise<RouteInfo>=> {
+  const filePath = `/public/assets/routes/${name}.json`;
+
+  try {
+    const response = await fetch(filePath);
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch file');
+    }
+
+    const data = await response.json();
+    return data;  // Aquí puedes retornar los datos del archivo JSON
+  } catch (error) {
+    console.error('Error reading JSON file:', error);
+    return null;  // O manejar el error de otra forma
+  }
+};
+
 export const getTiledObjectProperty = (
   name: string,
   object: Types.Tilemaps.TiledObject,
@@ -302,8 +320,6 @@ export const handleDoor = (
   const x = Number(getTiledObjectProperty("x", door));
   const y = Number(getTiledObjectProperty("y", door));
 
-  console.log(x);
-  console.log(y);
   userData.update({
     position: {
       x,
@@ -319,7 +335,7 @@ export const handleDoor = (
   scene.scene.restart({ startPosition: { x, y } });
 };
 
-export const handleMoveOnGrass = (
+export const handleMoveOnGrass = async (
   scene: WorldScene,
   grass: Types.Tilemaps.TiledObject,
 ) => {
@@ -395,7 +411,12 @@ export const handleMoveOnGrass = (
         const battleStarted = scene.data.get("battleStarted");
 
         if (!battleStarted) {
-          const pokemon = generatePokemon(getRandomPokemon().id);
+          const route = getTiledObjectProperty("route", grass);
+          const routeInfo = await getFileRoute(route);
+          const pokemonInfo = getWeightedPokemon(routeInfo.pokemons);
+          console.log("[Battle] Se encontro con "+pokemonInfo.id+" con "+pokemonInfo.rate);
+          const pokemon = generatePokemon(pokemonInfo.id);
+
 
           scene.sound.stopAll();
           scene.sound.play(Audios.BATTLE, getAudioConfig());
@@ -420,6 +441,27 @@ export const handleMoveOnGrass = (
     }
   }
 };
+
+export const getWeightedPokemon = (pokemons: PokemoRate[]): PokemoRate => {
+  // Calcular la suma total de los rates para usar como base para las probabilidades
+  const totalRate = pokemons.reduce((sum, pokemon) => sum + pokemon.rate, 0);
+
+  // Generar un número aleatorio basado en el total de los rates
+  const randomValue = Math.random() * totalRate;
+
+  // Recorrer los Pokémon y encontrar el que corresponde al valor aleatorio
+  let sum = 0;
+  for (const pokemon of pokemons) {
+    sum += pokemon.rate;
+    if (sum >= randomValue) {
+      return pokemon;
+    }
+  }
+
+  // En caso de un error, devolvemos el último Pokémon (aunque no debería ocurrir)
+  return pokemons[pokemons.length - 1];
+};
+
 
 export const handleDialogObject = (dialog: Types.Tilemaps.TiledObject) => {
   const content = dialog.properties.find(
